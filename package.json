@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "cd client && npm install && npm run build && cd ../server && npm install",
-    "start": "cd server && npm start",
-    "dev": "cd server && npm run dev",
+    "build": "node init && cd client && npm install && npm run build && cd ../server && npm install",
+    "start": "node init && cd server && npm start",
+    "dev": "node init && cd server && npm run dev",
     "client": "cd client && npm run dev",
     "worker": "cd server && npm run worker",
     "test": "cd server && npm test"

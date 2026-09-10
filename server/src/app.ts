@@ -28,8 +28,8 @@ const clientDist = path.resolve(__dirname, "../../client/dist");
 if (fs.existsSync(clientDist)) {
   app.use(express.static(clientDist));
 
-  // SPA fallback for React routing (catch-all non-API requests)
-  app.get("*", (req, res, next) => {
+  // SPA fallback for React routing (catch-all non-API requests for Express 5)
+  app.use((req, res, next) => {
     if (req.path.startsWith("/api")) return next();
     res.sendFile(path.join(clientDist, "index.html"));
   });
