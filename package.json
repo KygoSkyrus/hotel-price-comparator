@@ -1,0 +1,12 @@
+{
+  "name": "hotel-price-comparator",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "server": "cd server && npm run dev",
+    "client": "cd client && npm run dev",
+    "worker": "cd server && npm run worker",
+    "test": "cd server && npm test",
+    "install:all": "cd server && npm install && cd ../client && npm install"
+  }
+}
