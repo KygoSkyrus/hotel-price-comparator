@@ -16,13 +16,13 @@
     "@temporalio/worker": "^1.23.0",
     "@temporalio/workflow": "^1.23.0",
     "cors": "^2.8.6",
-    "express": "^5.2.1"
+    "express": "^5.2.1",
+    "tsx": "^4.21.0",
+    "typescript": "~5.9.3"
   },
   "devDependencies": {
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.6",
-    "@types/node": "^22.15.0",
-    "tsx": "^4.21.0",
-    "typescript": "~5.9.3"
+    "@types/node": "^22.15.0"
   }
 }

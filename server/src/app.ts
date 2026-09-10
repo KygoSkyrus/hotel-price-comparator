@@ -1,5 +1,8 @@
 import express from "express";
 import cors from "cors";
+import path from "path";
+import fs from "fs";
+import { fileURLToPath } from "url";
 import supplierRoutes from "./routes/suppliers.js";
 import searchRoutes from "./routes/search.js";
 
@@ -13,20 +16,25 @@ app.get("/api/healthz", (_req, res) => {
   res.json({ status: "ok" });
 });
 
-// Mount routes
+// Mount API routes
 app.use("/api", supplierRoutes);
 app.use("/api", searchRoutes);
 
-// Serve static frontend in production (Azure App Service compatibility)
-if (process.env.NODE_ENV === "production") {
-  const clientDist = new URL("../../client/dist", import.meta.url).pathname;
+// Serve static frontend files in production or if client/dist exists
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const clientDist = path.resolve(__dirname, "../../client/dist");
+
+if (fs.existsSync(clientDist)) {
   app.use(express.static(clientDist));
 
+  // SPA fallback for React routing (catch-all non-API requests)
   app.get("*", (req, res, next) => {
     if (req.path.startsWith("/api")) return next();
-    res.sendFile(`${clientDist}/index.html`);
+    res.sendFile(path.join(clientDist, "index.html"));
   });
 }
 
 export default app;
+
 
